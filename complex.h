@@ -1,6 +1,7 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
+#include <math.h>
 
 namespace cmpx {
     template <typename T>
@@ -14,8 +15,14 @@ namespace cmpx {
 
         Complex(const Complex&) = default;
         Complex& operator =(const Complex&) = default;
+
         Complex operator +(const Complex& c) noexcept;
         Complex operator *(T number) noexcept;
+
+        constexpr double module() const  {
+            return sqrt(realNum * realNum + imaginaryNum * imaginaryNum);
+        }
+
         friend Complex operator*(T number, const Complex& c) noexcept;
 
     private:
