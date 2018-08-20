@@ -2,6 +2,7 @@
 #define COMPLEX_H
 
 #include <math.h>
+#include <iostream>
 
 namespace cmpx {
     template <typename T>
@@ -19,19 +20,21 @@ namespace cmpx {
         Complex operator +(const Complex& c) noexcept;
         Complex operator *(T number) noexcept;
 
-        constexpr double module() const  {
+        constexpr double module() const noexcept {
             return sqrt(realNum * realNum + imaginaryNum * imaginaryNum);
         }
 
-        Complex operator -() {
+        Complex operator -() noexcept {
             return Complex(realNum, -imaginaryNum);
         }
 
         friend Complex operator*(T number, const Complex& c) noexcept;
+        friend std::ostream& operator <<(std::ostream&, const Complex&);
 
     private:
         T realNum;
         T imaginaryNum;
+        char sign;
     };
 
 }
