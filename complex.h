@@ -18,6 +18,7 @@ namespace cmpx {
         Complex& operator =(const Complex&) = default;
 
         Complex operator +(const Complex& c) noexcept;
+        Complex operator -(const Complex& c) noexcept;
         Complex operator *(T number) noexcept;
 
         constexpr double module() const noexcept {
@@ -25,7 +26,7 @@ namespace cmpx {
         }
 
         Complex operator -() noexcept {
-            return Complex(realNum, -imaginaryNum);
+            return Complex{realNum, -imaginaryNum};
         }
 
         friend Complex operator*(T number, const Complex& c) noexcept;
