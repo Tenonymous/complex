@@ -8,12 +8,13 @@ namespace cmpx {
     {
     public:
         constexpr Complex(T real = {}, T imaginary = {}) noexcept;
-        ~Complex();
+        ~Complex() = default;
         Complex(Complex&&) = default;
         Complex& operator =(Complex&&) = default;
 
         Complex(const Complex&) = default;
         Complex& operator =(const Complex&) = default;
+        Complex operator +(const Complex& c);
 
     private:
         T realNum;
