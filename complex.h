@@ -14,7 +14,9 @@ namespace cmpx {
 
         Complex(const Complex&) = default;
         Complex& operator =(const Complex&) = default;
-        Complex operator +(const Complex& c);
+        Complex operator +(const Complex& c) noexcept;
+        Complex operator *(T number) noexcept;
+        friend Complex operator*(T number, const Complex& c) noexcept;
 
     private:
         T realNum;
