@@ -29,7 +29,10 @@ namespace cmpx {
             return Complex{realNum, -imaginaryNum};
         }
 
-        friend Complex operator*(T number, const Complex& c) noexcept;
+        friend Complex operator*(T number, const Complex& c) noexcept {
+             return c * number;
+        }
+
         friend std::ostream& operator <<(std::ostream& os, const Complex<T>& c) {
             return os << c.realNum <<  " " << c.sign << " " << std::abs(c.imaginaryNum) << 'i';
         }
@@ -59,10 +62,6 @@ namespace cmpx {
     template <typename T>
     Complex<T> Complex<T>::operator *(T number) noexcept {
         return Complex{realNum* number, imaginaryNum * number};
-    }
-    template <typename T>
-    Complex<T> operator*(T number, const Complex<T>& c) noexcept {
-        return c * number;
     }
 
 }
