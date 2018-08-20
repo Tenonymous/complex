@@ -9,8 +9,9 @@ namespace cmpx {
     class Complex
     {
     public:
-        Complex(T real = {}, T imaginary = {}) noexcept;
+        constexpr Complex(T real = {}, T imaginary = {}) noexcept;
         ~Complex() = default;
+
         Complex(Complex&&) = default;
         Complex& operator =(Complex&&) = default;
 
@@ -21,13 +22,8 @@ namespace cmpx {
         Complex operator -(const Complex& c) noexcept;
         Complex operator *(T number) noexcept;
 
-        constexpr double module() const noexcept {
-            return sqrt(realNum * realNum + imaginaryNum * imaginaryNum);
-        }
-
-        Complex operator -() noexcept {
-            return Complex{realNum, -imaginaryNum};
-        }
+        constexpr double module() const noexcept;
+        Complex operator -() noexcept;
 
         friend Complex operator*(T number, const Complex& c) noexcept {
              return c * number;
@@ -36,6 +32,7 @@ namespace cmpx {
         friend std::ostream& operator <<(std::ostream& os, const Complex<T>& c) {
             return os << c.realNum <<  " " << c.sign << " " << std::abs(c.imaginaryNum) << 'i';
         }
+
     private:
         T realNum;
         T imaginaryNum;
@@ -43,7 +40,7 @@ namespace cmpx {
     };
 
     template <typename T>
-    Complex<T>::Complex(T real, T imaginary) noexcept
+    constexpr Complex<T>::Complex(T real, T imaginary) noexcept
         : realNum{real}, imaginaryNum{imaginary}, sign{imaginaryNum >= 0 ? '+' : '-'}
     {
 
@@ -62,6 +59,16 @@ namespace cmpx {
     template <typename T>
     Complex<T> Complex<T>::operator *(T number) noexcept {
         return Complex{realNum* number, imaginaryNum * number};
+    }
+
+    template <typename T>
+    constexpr double Complex<T>::module() const noexcept {
+        return sqrt(realNum * realNum + imaginaryNum * imaginaryNum);
+    }
+
+    template <typename T>
+    Complex<T> Complex<T>::operator -() noexcept {
+        return Complex{realNum, -imaginaryNum};
     }
 
 }
