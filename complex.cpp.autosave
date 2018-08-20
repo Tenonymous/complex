@@ -1,0 +1,11 @@
+#include "complex.h"
+
+namespace cmpx {
+    
+template<typename T>
+    Complex::Complex(T real, T imaginary)
+        : realNum(real), imaginaryNum(imaginary)
+    {
+        
+    }
+}
