@@ -4,8 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp \
-    complex.cpp
+        main.cpp
 
 HEADERS += \
     complex.h

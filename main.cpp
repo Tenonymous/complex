@@ -1,9 +1,12 @@
-#include <iostream>
+#include "complex.h"
 
-using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+
+ //   using namespace cmpx;
+
+    cmpx::Complex<> c{2.0,+5.0};
+    std::cout << c << std::endl;
     return 0;
 }
