@@ -33,7 +33,7 @@ namespace cmpx {
         Complex operator -() const noexcept;
 
         std::ostream& print(std::ostream& os) const;
-        std::istream& scanner(std::istream&) const;
+        std::istream& scanner(std::istream&);
 
     private:
         Type realNum;
@@ -93,7 +93,7 @@ namespace cmpx {
     }
 
     template <typename Type>
-    std::istream& Complex<Type>::scanner(std::istream& is) const {
+    std::istream& Complex<Type>::scanner(std::istream& is) {
         return is >> realNum >> imaginaryNum;
     }
 
@@ -103,13 +103,13 @@ namespace cmpx {
     };
 
     template <typename Type>
-    std::istream& operator >>(std::istream& is, const Complex<Type>& c) {
+    std::istream& operator >>(std::istream& is, Complex<Type>& c) {
         return c.scanner(is);
     }
 
     template <typename T1, typename T2>
     Complex<T2> operator*(T1 number, const Complex<T2>& c) noexcept {
-                return c * number;
+        return c * number;
     }
 
     template <typename Type>
