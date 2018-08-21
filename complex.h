@@ -12,11 +12,11 @@ namespace cmpx {
         constexpr Complex(Type real = {}, Type imaginary = {}) noexcept;
         ~Complex() = default;
 
-        Complex(Complex&&) = default;
-        Complex& operator =(Complex&&) = default;
+        constexpr Complex(Complex&&) = default;
+        constexpr Complex& operator =(Complex&&) = default;
 
-        Complex(const Complex&) = default;
-        Complex& operator =(const Complex&) = default;
+        constexpr Complex(const Complex&) = default;
+        constexpr Complex& operator =(const Complex&) = default;
 
         auto operator +(const Complex&) const noexcept;
         auto& operator +=(const Complex&) noexcept;
@@ -25,13 +25,13 @@ namespace cmpx {
         auto operator *(Type number) const noexcept;
         auto& operator *=(Type number) noexcept;
 
-        bool operator ==(const Complex&) noexcept;
-        bool operator !=(const Complex&) noexcept;
+        constexpr bool operator ==(const Complex&) const noexcept;
+        constexpr bool operator !=(const Complex&) const noexcept;
 
         constexpr Type realNumber() const noexcept { return realNum;}
         constexpr Type imaginaryNumber() const noexcept { return imaginaryNum;}
         constexpr double module() const noexcept;
-        auto operator -() const noexcept;
+        constexpr auto operator -() const noexcept;
 
         auto& print(std::ostream& os) const;
         auto& scanner(std::istream&);
@@ -91,7 +91,7 @@ namespace cmpx {
     }
 
     template <typename Type>
-    auto Complex<Type>::operator -() const noexcept {
+    constexpr auto Complex<Type>::operator -() const noexcept {
         return Complex{realNum, -imaginaryNum};
     }
 
@@ -116,17 +116,17 @@ namespace cmpx {
     }
 
     template <typename T1, typename T2>
-    Complex<T2> operator*(T1 number, const Complex<T2>& c) noexcept {
+    auto operator*(T1 number, const Complex<T2>& c) noexcept {
         return c * number;
     }
 
     template <typename Type>
-    bool Complex<Type>::operator ==(const Complex<Type>& c) noexcept {
+    constexpr bool Complex<Type>::operator ==(const Complex<Type>& c) const noexcept {
         return realNum == c.realNum && imaginaryNum == c.imaginaryNum;
     }
 
     template <typename Type>
-    bool Complex<Type>::operator !=(const Complex<Type>& c) noexcept {
+    constexpr bool Complex<Type>::operator !=(const Complex<Type>& c) const noexcept {
         return !(*this == c);
     }
 }
