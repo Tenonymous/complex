@@ -24,6 +24,9 @@ namespace cmpx {
         Complex& operator -=(const Complex&) noexcept;
         Complex operator *(Type number) const noexcept;
 
+        bool operator ==(const Complex&) noexcept;
+        bool operator !=(const Complex&) noexcept;
+
         constexpr double module() const noexcept;
         Complex operator -() const noexcept;
 
@@ -94,6 +97,16 @@ namespace cmpx {
     template <typename T1, typename T2>
     Complex<T2> operator*(T1 number, const Complex<T2>& c) noexcept {
                 return c * number;
+    };
+
+    template <typename Type>
+    bool Complex<Type>::operator ==(const Complex<Type>& c) noexcept {
+        return realNum == c.realNum && imaginaryNum == c.imaginaryNum;
+    }
+
+    template <typename Type>
+    bool Complex<Type>::operator !=(const Complex<Type>& c) noexcept {
+        return !(*this == c);
     }
 }
 #endif // COMPLEX_H
