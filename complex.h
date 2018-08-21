@@ -27,6 +27,8 @@ namespace cmpx {
         bool operator ==(const Complex&) noexcept;
         bool operator !=(const Complex&) noexcept;
 
+        constexpr Type realNumber() const noexcept { return realNum;}
+        constexpr Type imaginaryNumber() const noexcept { return imaginaryNum;}
         constexpr double module() const noexcept;
         Complex operator -() const noexcept;
 
