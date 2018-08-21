@@ -10,31 +10,31 @@ namespace cmpx {
     {
     public:
         constexpr Complex(Type real = {}, Type imaginary = {}) noexcept;
-        ~Complex() = default;
+        ~Complex()                                           = default;
 
-        constexpr Complex(Complex&&)                                 = default;
-        constexpr Complex& operator =(Complex&&)              = default;
+        constexpr Complex(Complex&&)                         = default;
+        constexpr Complex& operator =(Complex&&)             = default;
 
-        constexpr Complex(const Complex&)                          = default;
-        constexpr Complex& operator =(const Complex&)      = default;
+        constexpr Complex(const Complex&)                    = default;
+        constexpr Complex& operator =(const Complex&)        = default;
 
-        auto                       operator +(const Complex&)           const noexcept;
-        auto&                     operator +=(const Complex&)          noexcept;
-        auto                       operator -(const Complex&)           const noexcept;
-        auto&                     operator -=(const Complex&)          noexcept;
-        auto                       operator *(Type number)                const noexcept;
-        auto&                     operator *=(Type number)               noexcept;
+        auto                operator +(const Complex&)         const noexcept;
+        auto&               operator +=(const Complex&)        noexcept;
+        auto                operator -(const Complex&)         const noexcept;
+        auto&               operator -=(const Complex&)        noexcept;
+        auto                operator *(Type number)            const noexcept;
+        auto&               operator *=(Type number)           noexcept;
 
-        constexpr bool      operator ==(const Complex&)         const noexcept;
-        constexpr bool      operator !=(const Complex&)         const noexcept;
+        constexpr bool      operator ==(const Complex&)        const noexcept;
+        constexpr bool      operator !=(const Complex&)        const noexcept;
 
-        constexpr Type      realNumber()                                  const noexcept { return realNum;}
-        constexpr Type      imaginaryNumber()                         const noexcept { return imaginaryNum;}
-        constexpr double   module()                                        const noexcept;
-        constexpr auto       operator -()                                  const noexcept;
+        constexpr Type      realNumber()                       const noexcept { return realNum;}
+        constexpr Type      imaginaryNumber()                  const noexcept { return imaginaryNum;}
+        constexpr double    module()                           const noexcept;
+        constexpr auto      operator -()                       const noexcept;
 
-        auto&                     print(std::ostream& os)               const;
-        auto&                     scanner(std::istream&);
+        auto&               print(std::ostream& os)            const;
+        auto&               scanner(std::istream&);
 
     private:
         Type                      realNum;
