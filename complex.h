@@ -76,14 +76,14 @@ namespace cmpx {
     template <typename Type>
     auto Complex<Type>::operator *(Type number) const noexcept {
         return Complex{realNum * number, imaginaryNum * number};
-    };
+    }
 
     template <typename Type>
     auto& Complex<Type>::operator *=(Type number) noexcept {
             realNum *= number;
             imaginaryNum *= number;
             return *this;
-}
+    }
 
     template <typename Type>
     constexpr double Complex<Type>::module() const noexcept {
