@@ -37,9 +37,9 @@ namespace cmpx {
         auto&               scanner(std::istream&);
 
     private:
-        Type                      realNum;
-        Type                      imaginaryNum;
-        char                      sign;
+        Type                realNum;
+        Type                imaginaryNum;
+        char                sign;
     };
 
     template <typename Type>
