@@ -18,11 +18,12 @@ namespace cmpx {
         Complex(const Complex&) = default;
         Complex& operator =(const Complex&) = default;
 
-        Complex operator +(const Complex&) const noexcept;
-        Complex& operator +=(const Complex&) noexcept;
-        Complex operator -(const Complex&) const noexcept;
-        Complex& operator -=(const Complex&) noexcept;
-        Complex operator *(Type number) const noexcept;
+        auto operator +(const Complex&) const noexcept;
+        auto& operator +=(const Complex&) noexcept;
+        auto operator -(const Complex&) const noexcept;
+        auto& operator -=(const Complex&) noexcept;
+        auto operator *(Type number) const noexcept;
+        auto& operator *=(Type number) noexcept;
 
         bool operator ==(const Complex&) noexcept;
         bool operator !=(const Complex&) noexcept;
@@ -30,10 +31,10 @@ namespace cmpx {
         constexpr Type realNumber() const noexcept { return realNum;}
         constexpr Type imaginaryNumber() const noexcept { return imaginaryNum;}
         constexpr double module() const noexcept;
-        Complex operator -() const noexcept;
+        auto operator -() const noexcept;
 
-        std::ostream& print(std::ostream& os) const;
-        std::istream& scanner(std::istream&);
+        auto& print(std::ostream& os) const;
+        auto& scanner(std::istream&);
 
     private:
         Type realNum;
@@ -49,33 +50,40 @@ namespace cmpx {
     }
 
     template <typename Type>
-    Complex<Type> Complex<Type>::operator +(const Complex& c) const noexcept {
+    auto Complex<Type>::operator +(const Complex& c) const noexcept {
         return Complex{realNum + c.realNum, imaginaryNum + c.imaginaryNum};
     }
 
     template <typename Type>
-    Complex<Type>& Complex<Type>::operator +=(const Complex& c) noexcept {
+    auto& Complex<Type>::operator +=(const Complex& c) noexcept {
         realNum += c.realNum;
         imaginaryNum += c.imaginaryNum;
         return *this;
     }
 
     template <typename Type>
-    Complex<Type> Complex<Type>::operator -(const Complex& c) const noexcept {
+    auto Complex<Type>::operator -(const Complex& c) const noexcept {
         return Complex{realNum - c.realNum, imaginaryNum - c.imaginaryNum};
     }
 
     template <typename Type>
-    Complex<Type>& Complex<Type>::operator -=(const Complex& c) noexcept {
+    auto& Complex<Type>::operator -=(const Complex& c) noexcept {
         realNum -= c.realNum;
         imaginaryNum -= c.imaginaryNum;
         return *this;
     }
 
     template <typename Type>
-    Complex<Type> Complex<Type>::operator *(Type number) const noexcept {
-        return Complex{realNum* number, imaginaryNum * number};
-    }
+    auto Complex<Type>::operator *(Type number) const noexcept {
+        return Complex{realNum * number, imaginaryNum * number};
+    };
+
+    template <typename Type>
+    auto& Complex<Type>::operator *=(Type number) noexcept {
+            realNum *= number;
+            imaginaryNum *= number;
+            return *this;
+}
 
     template <typename Type>
     constexpr double Complex<Type>::module() const noexcept {
@@ -83,24 +91,24 @@ namespace cmpx {
     }
 
     template <typename Type>
-    Complex<Type> Complex<Type>::operator -() const noexcept {
+    auto Complex<Type>::operator -() const noexcept {
         return Complex{realNum, -imaginaryNum};
     }
 
     template <typename Type>
-    std::ostream& Complex<Type>::print(std::ostream& os) const {
+    auto& Complex<Type>::print(std::ostream& os) const {
         return os << realNum <<  " " << sign << " " << std::abs(imaginaryNum) << 'i';
     }
 
     template <typename Type>
-    std::istream& Complex<Type>::scanner(std::istream& is) {
+    auto& Complex<Type>::scanner(std::istream& is) {
         return is >> realNum >> imaginaryNum;
     }
 
     template <typename Type>
     std::ostream& operator <<(std::ostream& os, const Complex<Type>& c) {
-                return c.print(os);
-    };
+        return c.print(os);
+    }
 
     template <typename Type>
     std::istream& operator >>(std::istream& is, Complex<Type>& c) {
