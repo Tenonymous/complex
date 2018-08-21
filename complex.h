@@ -25,13 +25,12 @@ namespace cmpx {
         constexpr double module() const noexcept;
         Complex operator -() noexcept;
 
+        std::ostream& print(std::ostream& os) const;
+
         friend Complex operator*(T number, const Complex& c) noexcept {
              return c * number;
         }
 
-        friend std::ostream& operator <<(std::ostream& os, const Complex<T>& c) {
-            return os << c.realNum <<  " " << c.sign << " " << std::abs(c.imaginaryNum) << 'i';
-        }
 
     private:
         T realNum;
@@ -69,6 +68,16 @@ namespace cmpx {
     template <typename T>
     Complex<T> Complex<T>::operator -() noexcept {
         return Complex{realNum, -imaginaryNum};
+    }
+
+    template <typename T>
+    std::ostream& Complex<T>::print(std::ostream& os) const {
+        return os << realNum <<  " " << sign << " " << std::abs(imaginaryNum) << 'i';
+    }
+
+    template <typename T>
+    std::ostream& operator <<(std::ostream& os, const Complex<T>& c) {
+                return c.print(os);
     }
 
 }
