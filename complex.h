@@ -18,8 +18,10 @@ namespace cmpx {
         Complex(const Complex&) = default;
         Complex& operator =(const Complex&) = default;
 
-        Complex operator +(const Complex& c) const noexcept;
-        Complex operator -(const Complex& c) const noexcept;
+        Complex operator +(const Complex&) const noexcept;
+        Complex& operator +=(const Complex&) noexcept;
+        Complex operator -(const Complex&) const noexcept;
+        Complex& operator -=(const Complex&) noexcept;
         Complex operator *(Type number) const noexcept;
 
         constexpr double module() const noexcept;
@@ -46,8 +48,22 @@ namespace cmpx {
     }
 
     template <typename Type>
+    Complex<Type>& Complex<Type>::operator +=(const Complex& c) noexcept {
+        realNum += c.realNum;
+        imaginaryNum += c.imaginaryNum;
+        return *this;
+    }
+
+    template <typename Type>
     Complex<Type> Complex<Type>::operator -(const Complex& c) const noexcept {
         return Complex{realNum - c.realNum, imaginaryNum - c.imaginaryNum};
+    }
+
+    template <typename Type>
+    Complex<Type>& Complex<Type>::operator -=(const Complex& c) noexcept {
+        realNum -= c.realNum;
+        imaginaryNum -= c.imaginaryNum;
+        return *this;
     }
 
     template <typename Type>
