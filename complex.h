@@ -9,7 +9,7 @@ namespace cmpx {
     class Complex
     {
     public:
-        constexpr Complex(Type real = {}, Type imaginary = {}) noexcept;
+        constexpr Complex(const Type& real = {}, const Type& imaginary = {}) noexcept;
         ~Complex()                                           = default;
 
         constexpr Complex(Complex&&)                         = default;
@@ -43,7 +43,7 @@ namespace cmpx {
     };
 
     template <typename Type>
-    constexpr Complex<Type>::Complex(Type real, Type imaginary) noexcept
+    constexpr Complex<Type>::Complex(const Type& real, const Type& imaginary) noexcept
         : realNum{real}, imaginaryNum{imaginary}, sign{imaginaryNum >= 0 ? '+' : '-'}
     {
 
